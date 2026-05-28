@@ -15,6 +15,8 @@
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
 
+#define OLED_RESET     -1 
+
 #define SDA_PIN 5
 #define SCL_PIN 4
 
@@ -35,6 +37,21 @@ unsigned int flag = 0;   //HSPI// Flag variable to keep track of direction
 unsigned int flagv = 0;  //VSPI// Flag variable to keep track of direction
 int ch = 45;    // Variable to store value of ch
 int ch1 = 45;   // Variable to store value of ch
+
+char middle_button = 33;
+char right_button = 17;
+char left_button = 25;
+
+bool attacking = false;
+
+// For the oled
+bool clear_display = false;
+
+char show_activated[] = "Activated";
+char show_deactivated[] = "Deactivated";
+
+char* message = NULL;
+
 
 void initSP() {
   sp = new SPIClass(VSPI);
@@ -100,8 +117,50 @@ void setup(){
   // Init Radios
   initSP();
   initHP();
+
+  // Buttom
+  pinMode(middle_button, INPUT_PULLUP);
+
+  // Set color
+  display.setTextColor(SSD1306_WHITE);
+
+  // Clear the oled
+  display.clearDisplay();
+  display.display();
 }
 
 void loop(){
-  // one();
+
+  // When the button is pressed starts the jamming
+  if(!digitalRead(middle_button))
+  {
+    while(!digitalRead(middle_button));
+
+    attacking = !attacking;
+
+    clear_display = true;
+    
+    if(attacking)
+      message = show_activated;
+    else
+      message = show_deactivated;
+
+  }
+
+
+  if(attacking)
+  {
+    one();
+  }
+
+  if(clear_display)
+  {
+    display.clearDisplay();
+    display.setCursor(0, 0);
+    display.setTextSize(1);
+    display.println(F(message));
+    display.display();
+    clear_display = false;
+  }
+
 }
