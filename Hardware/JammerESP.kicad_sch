@@ -5,12 +5,9 @@
 	(uuid "004b838f-46af-4303-ac6c-807688597aa5")
 	(paper "A4")
 	(lib_symbols
-		(symbol "Connector:TestPoint_Probe"
-			(pin_numbers
-				(hide yes)
-			)
+		(symbol "Connector:Conn_01x03_Socket"
 			(pin_names
-				(offset 0.762)
+				(offset 1.016)
 				(hide yes)
 			)
 			(exclude_from_sim no)
@@ -18,8 +15,8 @@
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "TP"
-				(at 1.651 5.842 0)
+			(property "Reference" "J"
+				(at 0 5.08 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -28,8 +25,8 @@
 					)
 				)
 			)
-			(property "Value" "TestPoint_Probe"
-				(at 1.651 4.064 0)
+			(property "Value" "Conn_01x03_Socket"
+				(at 0 -5.08 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -39,7 +36,7 @@
 				)
 			)
 			(property "Footprint" ""
-				(at 5.08 0 0)
+				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -50,17 +47,6 @@
 				)
 			)
 			(property "Datasheet" ""
-				(at 5.08 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "test point (alternative probe-style design)"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -71,7 +57,7 @@
 					)
 				)
 			)
-			(property "ki_keywords" "test point tp"
+			(property "Description" "Generic connector, single row, 01x03, script generated"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -82,7 +68,17 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "Pin* Test*"
+			(property "ki_locked" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "connector"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -93,37 +89,94 @@
 					)
 				)
 			)
-			(symbol "TestPoint_Probe_0_1"
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Conn_01x03_Socket_1_1"
 				(polyline
 					(pts
-						(xy 1.27 0.762) (xy 0 0) (xy 0.762 1.27) (xy 1.27 0.762)
+						(xy -1.27 2.54) (xy -0.508 2.54)
 					)
 					(stroke
-						(width 0)
+						(width 0.1524)
 						(type default)
 					)
 					(fill
-						(type outline)
+						(type none)
 					)
 				)
 				(polyline
 					(pts
-						(xy 1.397 0.635) (xy 0.635 1.397) (xy 2.413 3.175) (xy 3.175 2.413) (xy 1.397 0.635)
+						(xy -1.27 0) (xy -0.508 0)
 					)
 					(stroke
-						(width 0)
+						(width 0.1524)
 						(type default)
 					)
 					(fill
-						(type background)
+						(type none)
 					)
 				)
-			)
-			(symbol "TestPoint_Probe_1_1"
+				(polyline
+					(pts
+						(xy -1.27 -2.54) (xy -0.508 -2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0 2.032)
+					(mid -0.5058 2.54)
+					(end 0 3.048)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0 -0.508)
+					(mid -0.5058 0)
+					(end 0 0.508)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0 -3.048)
+					(mid -0.5058 -2.54)
+					(end 0 -2.032)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
 				(pin passive line
-					(at 0 0 90)
-					(length 0)
-					(name "1"
+					(at -5.08 2.54 0)
+					(length 3.81)
+					(name "Pin_1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -131,6 +184,42 @@
 						)
 					)
 					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 3.81)
+					(name "Pin_3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3303,7 +3392,7 @@
 	)
 	(wire
 		(pts
-			(xy 127 34.29) (xy 132.08 34.29)
+			(xy 127 34.29) (xy 137.16 34.29)
 		)
 		(stroke
 			(width 0)
@@ -3330,6 +3419,16 @@
 			(type default)
 		)
 		(uuid "7bad85a5-cb85-41ba-963c-38c83d5ff165")
+	)
+	(wire
+		(pts
+			(xy 135.89 39.37) (xy 137.16 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7c64143c-a576-4acf-9848-965c1733a9c2")
 	)
 	(polyline
 		(pts
@@ -3440,16 +3539,6 @@
 			(type default)
 		)
 		(uuid "9aa98f7f-26a5-4eaa-98b3-cb61680ec564")
-	)
-	(wire
-		(pts
-			(xy 148.59 36.83) (xy 148.59 39.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9e9e821f-d478-4e81-b64d-9c47927964ee")
 	)
 	(wire
 		(pts
@@ -3783,6 +3872,16 @@
 	)
 	(wire
 		(pts
+			(xy 135.89 39.37) (xy 135.89 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ecd85931-bd8c-403b-b4db-770031510429")
+	)
+	(wire
+		(pts
 			(xy 80.01 168.91) (xy 80.01 166.37)
 		)
 		(stroke
@@ -3833,7 +3932,7 @@
 	)
 	(wire
 		(pts
-			(xy 127 36.83) (xy 132.08 36.83)
+			(xy 127 36.83) (xy 137.16 36.83)
 		)
 		(stroke
 			(width 0)
@@ -4730,7 +4829,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 			(at 108.9152 125.73 0)
 			(hide yes)
 			(show_name no)
@@ -4812,7 +4911,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 			(at 188.9252 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -5018,7 +5117,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 148.59 39.37 0)
+		(at 135.89 43.18 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5029,7 +5128,7 @@
 		(fields_autoplaced yes)
 		(uuid "487b889f-ad9c-4094-88dd-64e192f2c787")
 		(property "Reference" "#PWR05"
-			(at 148.59 45.72 0)
+			(at 135.89 49.53 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5040,7 +5139,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 148.59 44.45 0)
+			(at 135.89 48.26 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5050,7 +5149,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 148.59 39.37 0)
+			(at 135.89 43.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5061,7 +5160,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 148.59 39.37 0)
+			(at 135.89 43.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5072,7 +5171,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 148.59 39.37 0)
+			(at 135.89 43.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5116,7 +5215,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_Push"
+		(property "Value" "LEFT"
 			(at 196.85 63.5 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5126,7 +5225,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Footprints:SW_BUTT-2"
 			(at 196.85 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -5208,7 +5307,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 			(at 188.9252 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -5368,7 +5467,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 			(at 84.7852 177.8 0)
 			(hide yes)
 			(show_name no)
@@ -5871,84 +5970,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:TestPoint_Probe")
-		(at 132.08 36.83 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "772fd9b0-da86-4f53-997c-81250a7d90ab")
-		(property "Reference" "TP1"
-			(at 135.89 33.9724 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TX0"
-			(at 135.382 36.83 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 137.16 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 137.16 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point (alternative probe-style design)"
-			(at 132.08 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "3e5a1cc8-9cde-48a6-9547-6392cade5ad6")
-		)
-		(instances
-			(project "JammerESP"
-				(path "/004b838f-46af-4303-ac6c-807688597aa5"
-					(reference "TP1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 25.4 123.19 180)
 		(unit 1)
@@ -6048,7 +6069,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_Push"
+		(property "Value" "RIGHT"
 			(at 224.79 63.5 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6058,7 +6079,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Footprints:SW_BUTT-2"
 			(at 224.79 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -6140,7 +6161,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 			(at 82.2452 125.73 0)
 			(hide yes)
 			(show_name no)
@@ -6300,7 +6321,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 			(at 216.8652 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -6526,7 +6547,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_Push"
+		(property "Value" "UP"
 			(at 196.85 31.75 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6536,7 +6557,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Footprints:SW_BUTT-2"
 			(at 196.85 31.75 0)
 			(hide yes)
 			(show_name no)
@@ -6837,7 +6858,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical"
 			(at 31.75 127 0)
 			(hide yes)
 			(show_name no)
@@ -7171,7 +7192,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 			(at 107.6452 177.8 0)
 			(hide yes)
 			(show_name no)
@@ -7214,84 +7235,6 @@
 			(project "JammerESP"
 				(path "/004b838f-46af-4303-ac6c-807688597aa5"
 					(reference "C4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint_Probe")
-		(at 148.59 36.83 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "b05ff699-1dee-429d-995e-5fbf6dcc7028")
-		(property "Reference" "TP3"
-			(at 152.4 33.9724 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "GND_CON"
-			(at 151.892 36.83 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 153.67 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 153.67 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point (alternative probe-style design)"
-			(at 148.59 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d5ac4601-1ee3-4c20-a177-1d4122dc3842")
-		)
-		(instances
-			(project "JammerESP"
-				(path "/004b838f-46af-4303-ac6c-807688597aa5"
-					(reference "TP3")
 					(unit 1)
 				)
 			)
@@ -7376,6 +7319,91 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:Conn_01x03_Socket")
+		(at 142.24 36.83 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ca9453cf-73ab-4829-970c-631744b042da")
+		(property "Reference" "J3"
+			(at 143.51 35.5599 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Conn_01x03_Socket"
+			(at 143.51 38.0999 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
+			(at 142.24 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 142.24 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x03, script generated"
+			(at 142.24 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "172b5991-fc54-42af-9ceb-48c8647c484c")
+		)
+		(pin "2"
+			(uuid "f51889c2-3264-41f5-ac86-1e14861ecb63")
+		)
+		(pin "3"
+			(uuid "16ec4965-1ed3-44ac-a3a1-f0059d0e75fc")
+		)
+		(instances
+			(project "JammerESP"
+				(path "/004b838f-46af-4303-ac6c-807688597aa5"
+					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Switch:SW_Push")
 		(at 224.79 38.1 0)
 		(unit 1)
@@ -7397,7 +7425,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_Push"
+		(property "Value" "DOWN"
 			(at 224.79 33.02 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7407,7 +7435,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Footprints:SW_BUTT-2"
 			(at 224.79 33.02 0)
 			(hide yes)
 			(show_name no)
@@ -7647,7 +7675,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical"
 			(at 31.75 162.56 0)
 			(hide yes)
 			(show_name no)
@@ -7747,7 +7775,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 			(at 216.8652 46.99 0)
 			(hide yes)
 			(show_name no)
@@ -7868,84 +7896,6 @@
 			(project "JammerESP"
 				(path "/004b838f-46af-4303-ac6c-807688597aa5"
 					(reference "#PWR01")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint_Probe")
-		(at 132.08 34.29 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "ee769459-1a8e-4083-899c-ac9e27b83e83")
-		(property "Reference" "TP2"
-			(at 135.89 31.4324 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "RX0"
-			(at 135.636 29.464 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 137.16 34.29 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 137.16 34.29 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point (alternative probe-style design)"
-			(at 132.08 34.29 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "2af60448-4b87-413d-960e-313364d74273")
-		)
-		(instances
-			(project "JammerESP"
-				(path "/004b838f-46af-4303-ac6c-807688597aa5"
-					(reference "TP2")
 					(unit 1)
 				)
 			)
