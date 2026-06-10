@@ -3060,7 +3060,7 @@
 		(property "Reference" "SW2"
 			(at 0.175 0 0)
 			(layer "F.SilkS")
-			(uuid "1e5ea44c-3e1b-4372-a333-518b172adc3a")
+			(uuid "e0c74e3b-b61b-4568-8bdd-36d736dd0fc5")
 			(effects
 				(font
 					(size 1 1)
@@ -3071,7 +3071,7 @@
 		(property "Value" "DOWN"
 			(at 2.715 4.135 0)
 			(layer "F.Fab")
-			(uuid "2d7c6102-89ef-4745-8031-8ddf4ca20428")
+			(uuid "bcb3ce5f-8b88-432b-9971-de4cfdd01f1d")
 			(effects
 				(font
 					(size 1 1)
@@ -3083,7 +3083,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "7b62e425-27e6-4035-ab81-86db5b5bb858")
+			(uuid "9220e60d-eb58-4c5b-95ae-f8bb304d87bc")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3094,7 +3094,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "3fa3e92e-443d-4d8a-affe-cd6081553a72")
+			(uuid "de1a4ee0-9141-4a73-aadb-d99c05a5511f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4094,13 +4094,13 @@
 	(footprint "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 		(layer "B.Cu")
 		(uuid "7a36b21c-cd25-45e5-bf51-8ac3ff0d495f")
-		(at 206.57238 86.425 180)
+		(at 109.175 94.5 180)
 		(descr "Capacitor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor handsolder")
 		(property "Reference" "C6"
-			(at 0 1.85 0)
+			(at 97.63488 1.925 180)
 			(layer "B.SilkS")
-			(uuid "1dcdd15a-7455-43f0-84a6-c5817fb975bc")
+			(uuid "dd35187e-b74c-4fe2-9528-a915e6a6995d")
 			(effects
 				(font
 					(size 1 1)
@@ -4112,7 +4112,7 @@
 		(property "Value" "100nF"
 			(at 0 -1.85 0)
 			(layer "B.Fab")
-			(uuid "ff33d98b-8c40-40fb-96c8-b23ca84fbe3a")
+			(uuid "5ca9381b-863f-418b-a4d7-e04038549aab")
 			(effects
 				(font
 					(size 1 1)
@@ -4125,7 +4125,7 @@
 			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "92d8ba5f-679c-4669-9e20-2a67e4e32f57")
+			(uuid "90d67408-8aca-441d-99ce-954b2eac1e74")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4137,7 +4137,7 @@
 			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "8a555147-692f-4074-a943-062e9e18c8d8")
+			(uuid "5d7c49d1-4a0a-472d-a8db-17c5c3b35dac")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4258,7 +4258,7 @@
 	(footprint "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 		(layer "B.Cu")
 		(uuid "a978c9dc-7655-480d-ba90-c0e9dd199249")
-		(at 206.57238 89.775 180)
+		(at 69 96.5)
 		(descr "Capacitor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor handsolder")
 		(property "Reference" "C7"
@@ -4335,16 +4335,6 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -0.711252 0.91)
-			(end 0.711252 0.91)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "B.SilkS")
-			(uuid "9894ce98-659b-4562-9919-104b5298c9db")
-		)
-		(fp_line
 			(start -0.711252 -0.91)
 			(end 0.711252 -0.91)
 			(stroke
@@ -4353,6 +4343,16 @@
 			)
 			(layer "B.SilkS")
 			(uuid "f61bd058-1527-45b6-8a89-2852e186f641")
+		)
+		(fp_line
+			(start -0.711252 0.91)
+			(end 0.711252 0.91)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "9894ce98-659b-4562-9919-104b5298c9db")
 		)
 		(fp_rect
 			(start -2.48 1.15)
@@ -4389,7 +4389,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -1.5625 0 180)
+			(at -1.5625 0)
 			(size 1.325 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.188679)
@@ -4398,7 +4398,7 @@
 			(uuid "049c704c-e87e-465a-9062-1d579e9ac22d")
 		)
 		(pad "2" smd roundrect
-			(at 1.5625 0 180)
+			(at 1.5625 0)
 			(size 1.325 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.188679)
@@ -4699,7 +4699,7 @@
 	(footprint "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 		(layer "B.Cu")
 		(uuid "ada4e6e9-ee62-46b6-92af-d0e42bc90c53")
-		(at 206.57238 83.075 180)
+		(at 109.175 86)
 		(descr "Capacitor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor handsolder")
 		(property "Reference" "C5"
@@ -4776,16 +4776,6 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -0.711252 0.91)
-			(end 0.711252 0.91)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "B.SilkS")
-			(uuid "c5c73ea1-9c05-4bca-b910-39e07ee5cfcc")
-		)
-		(fp_line
 			(start -0.711252 -0.91)
 			(end 0.711252 -0.91)
 			(stroke
@@ -4794,6 +4784,16 @@
 			)
 			(layer "B.SilkS")
 			(uuid "bbbbbd56-298d-4189-8162-43ef6d5afe86")
+		)
+		(fp_line
+			(start -0.711252 0.91)
+			(end 0.711252 0.91)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "c5c73ea1-9c05-4bca-b910-39e07ee5cfcc")
 		)
 		(fp_rect
 			(start -2.48 1.15)
@@ -4830,7 +4830,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -1.5625 0 180)
+			(at -1.5625 0)
 			(size 1.325 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.188679)
@@ -4839,7 +4839,7 @@
 			(uuid "2f4d5ee9-f30b-4cee-9a83-ac3ae40cca01")
 		)
 		(pad "2" smd roundrect
-			(at 1.5625 0 180)
+			(at 1.5625 0)
 			(size 1.325 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.188679)
@@ -4863,7 +4863,7 @@
 	(footprint "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 		(layer "B.Cu")
 		(uuid "c2603416-e079-43ea-b7e7-f9ab0fd68619")
-		(at 206.57238 93.125 180)
+		(at 78 96.5 180)
 		(descr "Capacitor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor handsolder")
 		(property "Reference" "C8"
@@ -5439,6 +5439,17 @@
 				(xyz 0 0 0)
 			)
 		)
+	)
+	(gr_rect
+		(start 121.5 46)
+		(end 151.5 96)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "Dwgs.User")
+		(uuid "a0fc89cd-a02f-4df2-9084-3ecc43211e1d")
 	)
 	(gr_line
 		(start 64.5 53.5)
