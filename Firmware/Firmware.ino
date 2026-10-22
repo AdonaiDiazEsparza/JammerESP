@@ -39,9 +39,11 @@ unsigned int flagv = 0;  //VSPI// Flag variable to keep track of direction
 int ch = 45;    // Variable to store value of ch
 int ch1 = 45;   // Variable to store value of ch
 
-char middle_button = 33;
-char right_button = 17;
-char left_button = 25;
+char up_button = 32;
+char down_button = 25;
+
+char right_button = 35;
+char left_button = 33;
 
 bool attacking = false;
 
@@ -136,9 +138,9 @@ void setup(){
 void loop(){
 
   // When the button is pressed starts the jamming
-  if(!digitalRead(middle_button))
+  if(!digitalRead(right_button))
   {
-    while(!digitalRead(middle_button));
+    while(!digitalRead(right_button));
 
     attacking = !attacking;
 
