@@ -1,4 +1,7 @@
+Firmware/build/*
+
 Hardware/JammerESP-backups/*
+
 */.history
 
 *.zip

@@ -51,7 +51,7 @@ bool clear_display = false;
 char show_activated[] = "Activated";
 char show_deactivated[] = "Deactivated";
 
-char* message = NULL;
+char* message = show_deactivated;
 
 
 void initSP() {
@@ -127,6 +127,9 @@ void setup(){
 
   // Clear the oled
   display.clearDisplay();
+  display.setCursor(0, 0);
+  display.setTextSize(1);
+  display.println(F(message));
   display.display();
 }
 
