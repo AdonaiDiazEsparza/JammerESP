@@ -1,4 +1,3 @@
-
 #include "RF24.h"
 #include <SPI.h>
 #include "esp_bt.h"
@@ -7,6 +6,8 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+
+#include "menus.h"
 
 /*
   This code is taken from the following repository
@@ -39,22 +40,53 @@ unsigned int flagv = 0;  //VSPI// Flag variable to keep track of direction
 int ch = 45;    // Variable to store value of ch
 int ch1 = 45;   // Variable to store value of ch
 
-char up_button = 32;
-char down_button = 25;
-
-char right_button = 35;
-char left_button = 33;
-
 bool attacking = false;
 
-// For the oled
-bool clear_display = false;
+// ---------------------------------------------------------------------------
+// Menu: a single menu with 5 items.
+// Buttons (UP/DOWN/LEFT/RIGHT) and the OLED are handled by menus.cpp.
+// ---------------------------------------------------------------------------
+#define MENU_MAIN  0
+#define MENU_COUNT 1
 
-char show_activated[] = "Activated";
-char show_deactivated[] = "Deactivated";
+static menu_t menu_instances[MENU_COUNT];
 
-char* message = show_deactivated;
+static const char* main_menu_items[] = {
+  "Jammer",
+  "Opcion 2",
+  "Opcion 3",
+  "Opcion 4",
+  "Opcion 5",
+};
+#define MAIN_MENU_ITEMS (sizeof(main_menu_items) / sizeof(main_menu_items[0]))
 
+// Called when RIGHT (select) is pressed. "index" is the highlighted item.
+static void main_menu_callback(void* args, uint32_t index) {
+  (void)args;
+
+  switch (index) {
+    case 0:  // Jammer: toggle the attack on/off
+      attacking = !attacking;
+      Serial.println(attacking ? "Jammer ON" : "Jammer OFF");
+      break;
+
+    case 1:
+      Serial.println("Opcion 2 seleccionada");
+      break;
+
+    case 2:
+      Serial.println("Opcion 3 seleccionada");
+      break;
+
+    case 3:
+      Serial.println("Opcion 4 seleccionada");
+      break;
+
+    case 4:
+      Serial.println("Opcion 5 seleccionada");
+      break;
+  }
+}
 
 void initSP() {
   sp = new SPIClass(VSPI);
@@ -99,13 +131,7 @@ void one() {
   delayMicroseconds(random(60));
 }
 
-void attack(){
 
-}
-
-void draw_menu(){
-
-}
 
 void setup(){
   // Start Screen
@@ -121,49 +147,25 @@ void setup(){
   initSP();
   initHP();
 
-  // Set color
-  display.setTextColor(SSD1306_WHITE);
+  // Configure the single menu with its 5 items.
+  menu_instances[MENU_MAIN].items = main_menu_items;
+  menu_instances[MENU_MAIN].total_items = MAIN_MENU_ITEMS;
+  menu_instances[MENU_MAIN].callback = main_menu_callback;
+  menu_instances[MENU_MAIN].args = NULL;
+  menu_instances[MENU_MAIN].index = 0;
 
-  // Clear the oled
-  display.clearDisplay();
-  display.setCursor(0, 0);
-  display.setTextSize(1);
-  display.println(F(message));
-  display.display();
+  // Hand the OLED to the menu manager and show the first menu.
+  menu_manager_init(&display, NULL, menu_instances, MENU_COUNT);
+  menu__manager_next_menu(MENU_MAIN);
 }
 
 void loop(){
+  // Poll the buttons; navigation and selection run through the menu callback.
+  menu_buttons_update();
 
-  // When the button is pressed starts the jamming
-  if(!digitalRead(right_button))
-  {
-    while(!digitalRead(right_button));
-
-    attacking = !attacking;
-
-    clear_display = true;
-    
-    if(attacking)
-      message = show_activated;
-    else
-      message = show_deactivated;
-
-  }
-
-
-  if(attacking)
-  {
-    one();
-  }
-
-  if(clear_display)
-  {
-    display.clearDisplay();
-    display.setCursor(0, 0);
-    display.setTextSize(1);
-    display.println(F(message));
-    display.display();
-    clear_display = false;
-  }
-
+  // Keep hopping channels while the jammer is active.
+  // if(attacking)
+  // {
+  //   one();
+  // }
 }

@@ -10,21 +10,10 @@
 
 static Adafruit_SSD1306* display_oled = NULL;
 
-// Map the old minimal_oled color (1 = on, 0 = off) to the Adafruit color.
 static inline uint16_t menu_color(uint8_t color) {
     return color ? SSD1306_WHITE : SSD1306_BLACK;
 }
 
-// ---------------------------------------------------------------------------
-// Button backend (Button2)
-//
-// Four Button2 instances replace the old buttons_controller module. Pins match
-// the original Firmware.ino.
-//
-// NOTE: GPIO35 (right) is input-only on the ESP32 and has NO internal pull-up,
-// so BUTTON_RIGHT needs an EXTERNAL pull-up resistor. The other three pins use
-// the internal pull-up.
-// ---------------------------------------------------------------------------
 #define PIN_BTN_UP    32
 #define PIN_BTN_DOWN  25
 #define PIN_BTN_LEFT  33
