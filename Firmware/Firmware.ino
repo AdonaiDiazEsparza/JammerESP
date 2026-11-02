@@ -121,9 +121,6 @@ void setup(){
   initSP();
   initHP();
 
-  // Buttom
-  pinMode(middle_button, INPUT_PULLUP);
-
   // Set color
   display.setTextColor(SSD1306_WHITE);
 
