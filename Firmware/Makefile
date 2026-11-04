@@ -19,6 +19,7 @@ libs:
 	$(CLI) lib install "Adafruit GFX Library"
 	$(CLI) lib install "Adafruit SSD1306"
 	$(CLI) lib install "Adafruit BusIO"
+	$(CLI) lib install "Button2"
 
 compile:
 	$(CLI) compile \
