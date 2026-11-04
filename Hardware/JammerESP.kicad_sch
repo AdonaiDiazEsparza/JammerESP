@@ -8331,7 +8331,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:Nidec_Copal_CAS-120A"
+		(property "Footprint" "Footprints:Z_ESP32_DevKitC_38pin_socket"
 			(at 97.79 44.45 0)
 			(hide yes)
 			(show_name no)
