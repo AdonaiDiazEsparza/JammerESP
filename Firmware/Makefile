@@ -1,7 +1,7 @@
 
 CLI       ?= arduino-cli
 FQBN      ?= esp32:esp32:esp32
-PORT      ?= /dev/ttyACM0
+PORT      ?= /dev/ttyUSB0
 
 SKETCH    := $(CURDIR)
 BUILD_DIR := $(CURDIR)/build
