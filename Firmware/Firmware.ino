@@ -53,10 +53,9 @@ static menu_t menu_instances[MENU_COUNT];
 
 static const char* main_menu_items[] = {
   "Jammer",
-  "Opcion 2",
-  "Opcion 3",
-  "Opcion 4",
-  "Opcion 5",
+  "Spoofer",
+  "Deauther",
+  "Credits",
 };
 #define MAIN_MENU_ITEMS (sizeof(main_menu_items) / sizeof(main_menu_items[0]))
 
