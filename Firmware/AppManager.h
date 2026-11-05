@@ -22,18 +22,19 @@ typedef struct {
 // Class to manage 
 class AppManager_t {
     public:
-        void init(void* context_user, app_t* app, uint32_t total_apps);
-        void run(void);
+        AppManager_t(void* context_user, app_t* app, uint32_t total_apps);
+        void loop(void);
         bool event(uint32_t event);
-
-        void next_app(void);
-        void previous_app(void);
-
-        void set_app(uint32_t index);
+        void go_to_app(uint32_t app_number);
 
     private:
         void* context;
         app_t* apps;
         uint32_t total_apps;
+        uint32_t next_app;
+        uint32_t current_app;
 
+        bool start_app; // Flag to know if the app should be started
+        bool stop_app; // Flag to know if the app should be stopped
+        bool run_app; // Flag to know if the app should be run
 }; 
