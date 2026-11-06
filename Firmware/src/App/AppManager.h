@@ -22,14 +22,14 @@ typedef struct {
 // Class to manage 
 class AppManager_t {
     public:
-        AppManager_t(void* context_user, app_t* app, uint32_t total_apps);
+        AppManager_t(void* context_user, const app_t* app, uint32_t total_apps);
         void loop(void);
         bool event(uint32_t event);
         void go_to_app(uint32_t app_number);
 
     private:
         void* context;
-        app_t* apps;
+        const app_t* apps;
         uint32_t total_apps;
         uint32_t next_app;
         uint32_t current_app;

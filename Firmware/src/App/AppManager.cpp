@@ -1,12 +1,16 @@
 #include "AppManager.h"
 
 // Constructor of the AppManager class
-AppManager_t::AppManager_t(void* context_user, app_t* app, uint32_t total_apps)
+AppManager_t::AppManager_t(void* context_user, const app_t* app, uint32_t total_apps)
 {
     this->context = context_user;
     this->apps = app;
     this->total_apps = total_apps;
     this->current_app = 0;
+    this->next_app = 0;
+    this->start_app = true;   // Arranca la primera app al iniciar
+    this->run_app = false;
+    this->stop_app = false;
 }
 
 
