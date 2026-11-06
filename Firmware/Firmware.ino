@@ -1,5 +1,5 @@
-#include "hardwarelib.h"
-#include "menus.h"
+#include "App/Device/hardwarelib.h"
+#include "App/menus.h"
 
 // unsigned int flag = 0;   //HSPI// Flag variable to keep track of direction
 // unsigned int flagv = 0;  //VSPI// Flag variable to keep track of direction
