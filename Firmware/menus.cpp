@@ -1,11 +1,5 @@
 #include "menus.h"
 
-#include <Arduino.h>
-#include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
-#include <Button2.h>
-
 #include <stdlib.h>  // calloc
 
 static Adafruit_SSD1306* display_oled = NULL;
@@ -157,45 +151,7 @@ void menu_buttons_update(void) {
  */
 static void draw_menu_box(uint8_t pos)
 {
-    int page = 3;
-    int x = 0;
-
-    if(pos > 2){
-        pos = 2;
-    }
-
-    int y = 4 + (pos * 20);
-
-    int width = 128 - 4;
-
-    int height = (page * 8) - 6;
-
-    display_oled->drawRect(x, y, width, height, menu_color(1));
-    display_oled->drawRect(x, y, width - 1, height - 1, menu_color(1));
-
-    // Top left border
-    display_oled->drawPixel( x, y, menu_color(0));
-    display_oled->drawPixel( x + 1, y, menu_color(0));
-    display_oled->drawPixel( x, y + 1, menu_color(0));
-    display_oled->drawPixel( x + 1, y + 1, menu_color(1));
-
-    // Top right border
-    display_oled->drawPixel( width - 1, y, menu_color(0));
-    display_oled->drawPixel( width - 2, y, menu_color(0));
-    display_oled->drawPixel( width - 1, y + 1, menu_color(0));
-    display_oled->drawPixel( width - 2, y + 1, menu_color(1));
-
-    // Bottom left border
-    display_oled->drawPixel( x, y + height - 1, menu_color(0));
-    display_oled->drawPixel( x + 1, y + height - 1, menu_color(0));
-    display_oled->drawPixel( x, y + height - 2, menu_color(0));
-    display_oled->drawPixel( x + 1, y + height - 2, menu_color(1));
-
-    // Bottom right border
-    display_oled->drawPixel( width - 1, y + height - 1, menu_color(0));
-    display_oled->drawPixel( width - 2, y + height - 1, menu_color(0));
-    display_oled->drawPixel( width - 1, y + height - 2, menu_color(0));
-    display_oled->drawPixel( width - 2, y + height - 2, menu_color(1));
+    
 }
 
 /**
@@ -207,73 +163,7 @@ static void draw_menu_box(uint8_t pos)
  */
 static void draw_menu_items(void){
 
-    if(menu.total_items == 0){
-        return;
-    }
     
-    // Items to show on the menu (maximum 3)
-    uint8_t items_to_show = (menu.total_items < 3) ? menu.total_items : 3;
-
-    // Pivot for the item (start index of visible items)
-    static uint32_t items_pivot = 0;
-    static uint32_t last_total_items = 0;
-
-    // Reset pivot when menu changes (total_items changes)
-    if(last_total_items != menu.total_items) {
-        items_pivot = 0;
-        last_total_items = menu.total_items;
-    }
-
-    // Calculate pivot based on current index
-    if(menu.total_items <= 3) {
-        // For 3 or fewer items, always start from 0
-        items_pivot = 0;
-    } else {
-        // For more than 3 items, keep selected item in the middle when possible
-        // Position 1 is the middle (0=top, 1=middle, 2=bottom)
-        
-        // Calculate desired pivot to keep selected item in middle
-        uint32_t desired_pivot = (menu.index > 0) ? menu.index - 1 : 0;
-        
-        // Ensure we don't go beyond the end
-        if(desired_pivot + 3 > menu.total_items) {
-            desired_pivot = menu.total_items - 3;
-        }
-        
-        items_pivot = desired_pivot;
-    }
-
-    // Validate pivot to prevent out-of-bounds access
-    if(items_pivot + items_to_show > menu.total_items) {
-        items_pivot = (menu.total_items >= items_to_show) ? menu.total_items - items_to_show : 0;
-    }
-
-    // Position for the items
-    for(uint8_t i = 0; i < items_to_show; i++){
-        uint8_t y = 9 + (i * 20);
-        uint32_t item_index = items_pivot + i;
-        
-        // Safety check to prevent out-of-bounds access
-        if(item_index < menu.total_items) {
-            display_oled->setCursor(5, y);
-            display_oled->print(menu.items[item_index]);
-        }
-    }
-
-    // Calculate selected item position on screen (0=top, 1=middle, 2=bottom)
-    uint8_t selected_item = 0;
-    if(menu.index >= items_pivot && menu.index < items_pivot + items_to_show) {
-        selected_item = menu.index - items_pivot;
-    } else {
-        // Fallback: if index is out of visible range, clamp it
-        if(menu.index < items_pivot) {
-            selected_item = 0;
-        } else {
-            selected_item = items_to_show - 1;
-        }
-    }
-    
-    draw_menu_box(selected_item);
 
 }
 
@@ -432,7 +322,7 @@ void menu_reset(void) {
     menu.total_items = 0;
     menu.index = 0;
 
-    clear_menu();
+    clearMenu();
 }
 
 /**
@@ -442,9 +332,9 @@ void menu_reset(void) {
  *
  * @return void
  */
-void menu_manager_disable(void) {
+void menuManagerDisable(void) {
     menu_buttons_enabled = false;
-    clear_menu();
+    clearMenu();
 }
 
 /**
@@ -454,7 +344,201 @@ void menu_manager_disable(void) {
  *
  * @return void
  */
-void menu_manager_enable(void) {
+void menuManagerEnable(void) {
     menu_buttons_enabled = true;
-    show_menu();
+    showMenu();
+}
+
+/* 
+--------------------------------------------------------------------------------
+New version of menu manager
+--------------------------------------------------------------------------------
+*/
+
+MenuManager_t::MenuManager_t(Adafruit_SSD1306* display, uint16_t total_items, const char** items, menu_callback_t callback, menu_callback_back_t callback_back, void* context)
+{
+    this->display_oled = display;
+    this->total_items = total_items;
+    this->items = items;
+    this->callback = callback;
+    this->callback_back = callback_back;
+    this->context = context;
+    this->current_item = 0;
+}
+
+
+// Private Functions
+
+void MenuManager_t::showMenu(void)
+{
+    if(this->display_oled == NULL)
+    {
+        return;
+    }
+
+    this->display_oled->clearDisplay();
+    this->drawMenu();
+    this->display_oled->display();
+}
+
+void MenuManager_t::clearMenu(void)
+{
+    if(this->display_oled == NULL)
+    {
+        return;
+    }
+
+    this->display_oled->clearDisplay();
+    this->display_oled->display();
+}
+
+
+void MenuManager_t::drawMenu(void){
+    if(this->display_oled == NULL)
+    {
+        return;
+    }
+
+    this->display_oled->clearDisplay();
+
+    this->drawMenuItems();
+
+    this->display_oled->display();
+}
+
+
+void MenuManager_t::drawMenuBox(uint8_t pos){
+    if(this->display_oled == NULL)
+    {
+        return;
+    }
+
+    int page = 3;
+    int x = 0;
+
+    if(pos > 2){
+        pos = 2;
+    }
+
+    int y = 4 + (pos * 20);
+
+    int width = 128 - 4;
+
+    int height = (page * 8) - 6;
+
+    this->display_oled->drawRect(x, y, width, height, menu_color(1));
+    this->display_oled->drawRect(x, y, width - 1, height - 1, menu_color(1));
+
+    // Top left border
+    this->display_oled->drawPixel( x, y, menu_color(0));
+    this->display_oled->drawPixel( x + 1, y, menu_color(0));
+    this->display_oled->drawPixel( x, y + 1, menu_color(0));
+    this->display_oled->drawPixel( x + 1, y + 1, menu_color(1));
+
+    // Top right border
+    this->display_oled->drawPixel( width - 1, y, menu_color(0));
+    this->display_oled->drawPixel( width - 2, y, menu_color(0));
+    this->display_oled->drawPixel( width - 1, y + 1, menu_color(0));
+    this->display_oled->drawPixel( width - 2, y + 1, menu_color(1));
+
+    // Bottom left border
+    this->display_oled->drawPixel( x, y + height - 1, menu_color(0));
+    this->display_oled->drawPixel( x + 1, y + height - 1, menu_color(0));
+    this->display_oled->drawPixel( x, y + height - 2, menu_color(0));
+    this->display_oled->drawPixel( x + 1, y + height - 2, menu_color(1));
+
+    // Bottom right border
+    this->display_oled->drawPixel( width - 1, y + height - 1, menu_color(0));
+    this->display_oled->drawPixel( width - 2, y + height - 1, menu_color(0));
+    this->display_oled->drawPixel( width - 1, y + height - 2, menu_color(0));
+    this->display_oled->drawPixel( width - 2, y + height - 2, menu_color(1));
+}
+
+
+void MenuManager_t::drawMenuItems(void)
+{
+    if(this->display_oled == NULL)
+    {
+        return;
+    }
+
+    if(this->total_items == 0){
+        return;
+    }
+    
+    // Items to show on the menu (maximum 3)
+    uint8_t items_to_show = (this->total_items < 3) ? this->total_items : 3;
+
+    // Pivot for the item (start index of visible items)
+    static uint32_t items_pivot = 0;
+    static uint32_t last_total_items = 0;
+
+    // Reset pivot when menu changes (total_items changes)
+    if(last_total_items != this->total_items) {
+        items_pivot = 0;
+        last_total_items = this->total_items;
+    }
+
+    // Calculate pivot based on current index
+    if(this->total_items <= 3) {
+        // For 3 or fewer items, always start from 0
+        items_pivot = 0;
+    } else {
+        // For more than 3 items, keep selected item in the middle when possible
+        // Position 1 is the middle (0=top, 1=middle, 2=bottom)
+        
+        // Calculate desired pivot to keep selected item in middle
+        uint32_t desired_pivot = (this->current_item > 0) ? this->current_item - 1 : 0;
+        
+        // Ensure we don't go beyond the end
+        if(desired_pivot + 3 > this->total_items) {
+            desired_pivot = this->total_items - 3;
+        }
+        
+        items_pivot = desired_pivot;
+    }
+
+    // Validate pivot to prevent out-of-bounds access
+    if(items_pivot + items_to_show > this->total_items) {
+        items_pivot = (this->total_items >= items_to_show) ? this->total_items - items_to_show : 0;
+    }
+
+    // Position for the items
+    for(uint8_t i = 0; i < items_to_show; i++){
+        uint8_t y = 9 + (i * 20);
+        uint32_t item_index = items_pivot + i;
+        
+        // Safety check to prevent out-of-bounds access
+        if(item_index < this->total_items) {
+            this->display_oled->setCursor(5, y);
+            this->display_oled->print(this->items[item_index]);
+        }
+    }
+
+    // Calculate selected item position on screen (0=top, 1=middle, 2=bottom)
+    uint8_t selected_item = 0;
+    if(this->current_item >= items_pivot && this->current_item < items_pivot + items_to_show) {
+        selected_item = this->current_item - items_pivot;
+    } else {
+        // Fallback: if index is out of visible range, clamp it
+        if(this->current_item < items_pivot) {
+            selected_item = 0;
+        } else {
+            selected_item = items_to_show - 1;
+        }
+    }
+    
+    this->drawMenuBox(selected_item);
+}
+
+
+void MenuManager_t::onButtonReleased(Button2& btn)
+{
+    
+    this->menuButtonCallback((uint8_t)btn.getID(), BUTTON_PRESS_UP);
+    
+}
+
+void MenuManager_t::menuButtonCallback(uint8_t button, uint8_t event){
+    // Missing this part
 }

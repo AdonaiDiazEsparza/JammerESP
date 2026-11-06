@@ -30,10 +30,6 @@ RF24 radio1(22, 21, 16000000);  //VSPI CAN SET SPI SPEED TO 16000000 BY DEFAULT 
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-//HSPI= SCK = 14, MISO = 12, MOSI = 13, CS = 27 , CE = 26
-
-//VSPI= SCK = 18, MISO = 19, MOSI = 23 ,CS =21 ,CE = 22
-// SDA= 5  SCL= 4
 
 unsigned int flag = 0;   //HSPI// Flag variable to keep track of direction
 unsigned int flagv = 0;  //VSPI// Flag variable to keep track of direction
@@ -46,10 +42,7 @@ bool attacking = false;
 // Menu: a single menu with 5 items.
 // Buttons (UP/DOWN/LEFT/RIGHT) and the OLED are handled by menus.cpp.
 // ---------------------------------------------------------------------------
-#define MENU_MAIN  0
-#define MENU_COUNT 1
 
-static menu_t menu_instances[MENU_COUNT];
 
 static const char* main_menu_items[] = {
   "Jammer",
@@ -57,6 +50,8 @@ static const char* main_menu_items[] = {
   "Deauther",
   "Credits",
 };
+
+
 #define MAIN_MENU_ITEMS (sizeof(main_menu_items) / sizeof(main_menu_items[0]))
 
 // Called when RIGHT (select) is pressed. "index" is the highlighted item.
@@ -146,25 +141,9 @@ void setup(){
   initSP();
   initHP();
 
-  // Configure the single menu with its 5 items.
-  menu_instances[MENU_MAIN].items = main_menu_items;
-  menu_instances[MENU_MAIN].total_items = MAIN_MENU_ITEMS;
-  menu_instances[MENU_MAIN].callback = main_menu_callback;
-  menu_instances[MENU_MAIN].args = NULL;
-  menu_instances[MENU_MAIN].index = 0;
-
-  // Hand the OLED to the menu manager and show the first menu.
-  menu_manager_init(&display, NULL, menu_instances, MENU_COUNT);
-  menu__manager_next_menu(MENU_MAIN);
+  
 }
 
 void loop(){
-  // Poll the buttons; navigation and selection run through the menu callback.
-  menu_buttons_update();
-
-  // Keep hopping channels while the jammer is active.
-  // if(attacking)
-  // {
-  //   one();
-  // }
+  
 }
