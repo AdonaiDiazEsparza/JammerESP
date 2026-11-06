@@ -1,12 +1,3 @@
-#include "RF24.h"
-#include <SPI.h>
-#include "esp_bt.h"
-#include "esp_wifi.h"
-
-#include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
-
 #include "hardwarelib.h"
 #include "menus.h"
 

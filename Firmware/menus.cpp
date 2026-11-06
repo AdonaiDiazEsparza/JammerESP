@@ -1,5 +1,11 @@
 #include "menus.h"
 
+// Maps a logical color (1 = foreground, 0 = background) to the SSD1306 color.
+static inline uint16_t menu_color(uint8_t c)
+{
+    return c ? SSD1306_WHITE : SSD1306_BLACK;
+}
+
 Menu_t::Menu_t(Adafruit_SSD1306* display, uint16_t total_items, const char** items, menu_callback_t callback, menu_callback_back_t callback_back, void* context)
 {
     this->display_oled = display;
@@ -18,10 +24,11 @@ void Menu_t::setButtons(Button2* btn_up, Button2* btn_down, Button2* btn_left, B
     this->btn_left = btn_left;
     this->btn_right = btn_right;
 
-    this->btn_up->setReleasedHandler(this->onButtonReleased);
-    this->btn_down->setReleasedHandler(this->onButtonReleased);
-    this->btn_left->setReleasedHandler(this->onButtonReleased);
-    this->btn_right->setReleasedHandler(this->onButtonReleased);
+    auto handler = [this](Button2& btn) { this->onButtonReleased(btn); };
+    this->btn_up->setReleasedHandler(handler);
+    this->btn_down->setReleasedHandler(handler);
+    this->btn_left->setReleasedHandler(handler);
+    this->btn_right->setReleasedHandler(handler);
 }
 
 void Menu_t::setSelectedItem(uint8_t item)
