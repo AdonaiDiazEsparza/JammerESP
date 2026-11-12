@@ -15,7 +15,10 @@
 // veces a proposito (patron X-macro).
 
 ADD_APP(main_menu)
-ADD_APP(jammer_app)
-ADD_APP(deauther_app)
-ADD_APP(settings_app)
-ADD_APP(credits_app)
+ADD_APP(jammer_menu)
+ADD_APP(jammer_attacker)
+ADD_APP(test_radios)
+ADD_APP(deauther)
+ADD_APP(bluetooth_spoofing)
+ADD_APP(settings)
+ADD_APP(credits)

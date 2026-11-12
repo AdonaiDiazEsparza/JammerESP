@@ -8,7 +8,6 @@
 * It is used to navigate through the apps and to show the main menu
 */
 
-
 const char* items[] = {
     "Jammer",
     "BlueSpoof",
@@ -18,19 +17,39 @@ const char* items[] = {
 };
 
 void main_menu_callback(void* context, uint32_t index) {
+
+    app_context_t* app_context = (app_context_t*)context;
+    AppManager_t* app_manager = (AppManager_t*)app_context->app_manager;
+
     switch(index) {
         case 0:
             Serial.println("Jammer");
+            app_manager->go_to_app(app_jammer_menu_id);
+
             break;
+
         case 1:
-            Serial.println("BlueSpoof");
+            Serial.println("Bluetooth Spoofing");
+            app_manager->go_to_app(app_bluetooth_spoofing_id);
+
             break;
+
         case 2:
             Serial.println("Deauther");
+            app_manager->go_to_app(app_deauther_id);
+
             break;
+
         case 3:
+            Serial.println("Settings");
+            app_manager->go_to_app(app_settings_id);
+
             break;
+
         case 4:
+            Serial.println("Credits");
+            app_manager->go_to_app(app_credits_id);
+
             break;
     }
 }
