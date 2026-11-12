@@ -41,12 +41,6 @@ void main_menu_callback(void* context, uint32_t index) {
             break;
 
         case 3:
-            Serial.println("Settings");
-            app_manager->go_to_app(app_settings_id);
-
-            break;
-
-        case 4:
             Serial.println("Credits");
             app_manager->go_to_app(app_credits_id);
 
