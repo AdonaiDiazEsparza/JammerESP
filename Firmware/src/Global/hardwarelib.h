@@ -21,7 +21,7 @@
 #define PIN_BTN_UP    32
 #define PIN_BTN_DOWN  25
 #define PIN_BTN_LEFT  33
-#define PIN_BTN_RIGHT 35
+#define PIN_BTN_RIGHT 2
 
 extern Adafruit_SSD1306 display;
 extern Button2 btn_up;

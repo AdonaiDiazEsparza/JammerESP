@@ -6,7 +6,7 @@ static inline uint16_t menu_color(uint8_t c)
     return c ? SSD1306_WHITE : SSD1306_BLACK;
 }
 
-Menu_t::Menu_t(Adafruit_SSD1306* display, uint16_t total_items, const char** items, menu_callback_t callback, menu_callback_back_t callback_back, void* context)
+Menus_t::Menus_t(Adafruit_SSD1306* display, uint16_t total_items, const char** items, menu_callback_t callback, menu_callback_back_t callback_back, void* context)
 {
     this->display_oled = display;
     this->total_items = total_items;
@@ -15,9 +15,46 @@ Menu_t::Menu_t(Adafruit_SSD1306* display, uint16_t total_items, const char** ite
     this->callback_back = callback_back;
     this->context = context;
     this->current_item = 0;
+    this->btn_up = nullptr;
+    this->btn_down = nullptr;
+    this->btn_left = nullptr;
+    this->btn_right = nullptr;
 }
 
-void Menu_t::setButtons(Button2* btn_up, Button2* btn_down, Button2* btn_left, Button2* btn_right)
+
+Menus_t::Menus_t(Adafruit_SSD1306* display)
+{
+    this->display_oled = display;
+    this->items = nullptr;
+    this->total_items = 0;
+    this->callback = nullptr;
+    this->callback_back = nullptr;
+    this->context = nullptr;
+    this->current_item = 0;
+    this->btn_up = nullptr;
+    this->btn_down = nullptr;
+    this->btn_left = nullptr;
+    this->btn_right = nullptr;
+}
+
+
+void Menus_t::setItems(const char** items, uint16_t total_items, menu_callback_t callback, menu_callback_back_t callback_back, void* context)
+{
+    this->items = items;
+    this->total_items = total_items;
+    this->callback = callback;
+    this->callback_back = callback_back;
+    this->context = context;
+    this->current_item = 0;
+    this->showMenu();
+}
+
+void Menus_t::setContext(void* context)
+{
+    this->context = context;
+}
+
+void Menus_t::setButtons(Button2* btn_up, Button2* btn_down, Button2* btn_left, Button2* btn_right)
 {
     this->btn_up = btn_up;
     this->btn_down = btn_down;
@@ -31,14 +68,17 @@ void Menu_t::setButtons(Button2* btn_up, Button2* btn_down, Button2* btn_left, B
     this->btn_right->setReleasedHandler(handler);
 }
 
-void Menu_t::setSelectedItem(uint8_t item)
+void Menus_t::setSelectedItem(uint8_t item)
 {
     this->current_item = item;
     this->showMenu();
 }
 
-void Menu_t::reset(void)
+void Menus_t::reset(void)
 {
+    // First clear the menu
+    this->clearMenu();
+
     this->current_item = 0;
     this->items = NULL;
     this->total_items = 0;
@@ -47,9 +87,21 @@ void Menu_t::reset(void)
     this->context = NULL;
 }
 
+void Menus_t::run(void){
+    if(this->btn_up == NULL || this->btn_down == NULL ||
+       this->btn_left == NULL || this->btn_right == NULL) {
+        return;
+    }
+
+    this->btn_up->loop();
+    this->btn_down->loop();
+    this->btn_left->loop();
+    this->btn_right->loop();
+}
+
 // Private functions
 
-void Menu_t::showMenu(void)
+void Menus_t::showMenu(void)
 {
     if(this->display_oled == NULL)
     {
@@ -61,7 +113,7 @@ void Menu_t::showMenu(void)
     this->display_oled->display();
 }
 
-void Menu_t::clearMenu(void)
+void Menus_t::clearMenu(void)
 {
     if(this->display_oled == NULL)
     {
@@ -73,7 +125,7 @@ void Menu_t::clearMenu(void)
 }
 
 
-void Menu_t::drawMenu(void){
+void Menus_t::drawMenu(void){
     if(this->display_oled == NULL)
     {
         return;
@@ -87,7 +139,7 @@ void Menu_t::drawMenu(void){
 }
 
 
-void Menu_t::drawMenuBox(uint8_t pos){
+void Menus_t::drawMenuBox(uint8_t pos){
     if(this->display_oled == NULL)
     {
         return;
@@ -135,7 +187,7 @@ void Menu_t::drawMenuBox(uint8_t pos){
 }
 
 
-void Menu_t::drawMenuItems(void)
+void Menus_t::drawMenuItems(void)
 {
     if(this->display_oled == NULL)
     {
@@ -183,6 +235,10 @@ void Menu_t::drawMenuItems(void)
         items_pivot = (this->total_items >= items_to_show) ? this->total_items - items_to_show : 0;
     }
 
+    // Text style for the items (sin esto el texto queda negro sobre negro)
+    this->display_oled->setTextSize(1);
+    this->display_oled->setTextColor(menu_color(1));
+
     // Position for the items
     for(uint8_t i = 0; i < items_to_show; i++){
         uint8_t y = 9 + (i * 20);
@@ -212,23 +268,27 @@ void Menu_t::drawMenuItems(void)
 }
 
 
-void Menu_t::onButtonReleased(Button2& btn)
+void Menus_t::onButtonReleased(Button2& btn)
 {
     
     this->menuButtonCallback((uint8_t)btn.getID(), BUTTON_PRESS_UP);
     
 }
 
-void Menu_t::menuButtonCallback(uint8_t button, uint8_t event){
+void Menus_t::menuButtonCallback(uint8_t button, uint8_t event){
     
     if (button == BUTTON_LEFT) {
-        this->callback_back(this->context);
+        if(this->callback_back != NULL) {
+            this->callback_back(this->context);
+        }
         return;
     } 
 
     else if (button == BUTTON_RIGHT) {
         // Callback for the current menu
-        this->callback(this->context, this->current_item); 
+        if(this->callback != NULL) {
+            this->callback(this->context, this->current_item); 
+        }
         return;
     }
 

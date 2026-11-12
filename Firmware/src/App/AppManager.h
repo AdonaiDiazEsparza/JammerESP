@@ -4,10 +4,10 @@
 
 
 // Functions prototypes for the apps
-typedef void (*app_init_t)(void);
-typedef void (*app_run_t)(void);
-typedef void (*app_deinit_t)(void);
-typedef bool (*app_event_t)(uint32_t event);
+typedef void (*app_init_t)(void* context);
+typedef void (*app_run_t)(void* context);
+typedef void (*app_deinit_t)(void* context);
+typedef bool (*app_event_t)(void* context, uint32_t event);
 
 
 // Struct to save the functions for apps
@@ -22,7 +22,11 @@ typedef struct {
 // Class to manage 
 class AppManager_t {
     public:
+        AppManager_t(void);
         AppManager_t(void* context_user, const app_t* app, uint32_t total_apps);
+
+        void setManager(const app_t* app, uint32_t total_apps, void* context);
+        void setContext(void* context);
         void loop(void);
         bool event(uint32_t event);
         void go_to_app(uint32_t app_number);

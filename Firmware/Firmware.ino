@@ -1,7 +1,4 @@
-#include "src/Global/hardwarelib.h"
-#include "src/App/AppManager.h"
-#include "src/App/menus.h"
-#include "src/Global/app_adder_functions.h"
+#include "src/App.h"
 
 // unsigned int flag = 0;   //HSPI// Flag variable to keep track of direction
 // unsigned int flagv = 0;  //VSPI// Flag variable to keep track of direction
@@ -12,12 +9,20 @@ void one() {
   delayMicroseconds(random(60));
 }
 
-// Administrador de apps alimentado con la tabla generada por los X-macro.
+app_context_t app_context;
+
 AppManager_t appManager(nullptr, apps, app_total_count);
+
+Menus_t MenusManager(&display);
 
 void setup(){
   // Start Screen
   initHardware();
+
+  app_context.app_manager = &appManager;
+  app_context.menus = &MenusManager;
+
+  appManager.setContext(&app_context);
 }
 
 void loop(){

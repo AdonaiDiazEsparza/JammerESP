@@ -26,15 +26,19 @@ typedef void (*menu_callback_back_t)(void* args);
 * New version of menu manager
 */
 
-class Menu_t {
+class Menus_t {
     public:
-        Menu_t(Adafruit_SSD1306* display, uint16_t total_items, const char** items, menu_callback_t callback, menu_callback_back_t callback_back, void* context);
+        Menus_t(Adafruit_SSD1306* display, uint16_t total_items, const char** items, menu_callback_t callback, menu_callback_back_t callback_back, void* context);
+        Menus_t(Adafruit_SSD1306* display);
+        void setItems(const char** items, uint16_t total_items, menu_callback_t callback, menu_callback_back_t callback_back, void* context);
+        void setContext(void* context);
         void setButtons(Button2* btn_up, Button2* btn_down, Button2* btn_left, Button2* btn_right);
         void setSelectedItem(uint8_t item);
         void reset(void);
+        void showMenu(void);
+        void run(void);
 
     private:
-        void showMenu(void);
         void clearMenu(void);
 
         void drawMenuBox(uint8_t pos);
