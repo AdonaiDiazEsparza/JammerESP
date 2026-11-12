@@ -40,6 +40,10 @@ Menus_t::Menus_t(Adafruit_SSD1306* display)
 
 void Menus_t::setItems(const char** items, uint16_t total_items, menu_callback_t callback, menu_callback_back_t callback_back, void* context)
 {
+    if(total_items == 0 || items == NULL) {
+        return;
+    }
+
     this->items = items;
     this->total_items = total_items;
     this->callback = callback;
