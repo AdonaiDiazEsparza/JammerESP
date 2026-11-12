@@ -18,5 +18,5 @@ void app_deauther_deinit(void* context) {
 }
 
 bool app_deauther_event(void* context, uint32_t event) {
-
+    return false;
 }

@@ -35,7 +35,7 @@ void jammer_menu_callback_back(void* context){
 }
 
 bool app_jammer_menu_event(void* context, uint32_t event) {
-
+    return false;
 }
 
 void app_jammer_menu_init(void* context) {
@@ -62,7 +62,7 @@ void app_jammer_menu_deinit(void* context) {
 */
 
 bool app_jammer_attacker_event(void* context, uint32_t event) {
-
+    return false;
 }
 
 void app_jammer_attacker_init(void* context) {
@@ -83,7 +83,7 @@ void app_jammer_attacker_deinit(void* context) {
 */
 
 bool app_test_radios_event(void* context, uint32_t event) {
-
+    return false;
 }
 
 void app_test_radios_init(void* context) {
