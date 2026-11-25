@@ -2761,12 +2761,12 @@
 		(uuid "4fb0624d-9568-4d34-83a3-f2456bffbe49")
 	)
 	(no_connect
-		(at 82.55 40.64)
-		(uuid "6c8d6054-7548-4b75-b66e-fb8df9c82358")
+		(at 120.65 66.04)
+		(uuid "6733e56b-6fbe-4d52-bbd1-6dcd3a0697fa")
 	)
 	(no_connect
-		(at 120.935 68.58)
-		(uuid "746e0cee-ce8a-41a5-ad36-df77bb8a14dd")
+		(at 82.55 40.64)
+		(uuid "6c8d6054-7548-4b75-b66e-fb8df9c82358")
 	)
 	(no_connect
 		(at 82.55 43.18)
@@ -3422,16 +3422,6 @@
 	)
 	(wire
 		(pts
-			(xy 120.65 66.04) (xy 123.19 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6c0e4385-07f6-467a-8b93-531f272bbb7e")
-	)
-	(wire
-		(pts
 			(xy 43.18 66.04) (xy 45.72 66.04)
 		)
 		(stroke
@@ -3699,6 +3689,16 @@
 			(type default)
 		)
 		(uuid "aaf2c690-27a0-493e-9bca-56ae1a5dcbd3")
+	)
+	(wire
+		(pts
+			(xy 120.65 68.58) (xy 123.19 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "abadf195-d418-46f0-a84b-c839c58fd343")
 	)
 	(wire
 		(pts
@@ -4347,7 +4347,7 @@
 		(uuid "1e55e97f-a423-4f39-a5d9-870f30be61c0")
 	)
 	(label "RIGHT"
-		(at 123.19 66.04 0)
+		(at 123.19 68.58 0)
 		(effects
 			(font
 				(size 1.27 1.27)
