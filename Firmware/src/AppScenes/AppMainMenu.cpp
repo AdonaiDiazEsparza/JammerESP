@@ -21,28 +21,30 @@ void main_menu_callback(void* context, uint32_t index) {
     app_context_t* app_context = (app_context_t*)context;
     AppManager_t* app_manager = (AppManager_t*)app_context->app_manager;
 
+    Serial.println("Opcion apretada: "+index);
+
     switch(index) {
         case 0:
             Serial.println("Jammer");
-            app_manager->go_to_app(app_jammer_menu_id);
+            // app_manager->go_to_app(app_jammer_menu_id);
 
             break;
 
         case 1:
             Serial.println("Bluetooth Spoofing");
-            app_manager->go_to_app(app_bluetooth_spoofing_id);
+            // app_manager->go_to_app(app_bluetooth_spoofing_id);
 
             break;
 
         case 2:
             Serial.println("Deauther");
-            app_manager->go_to_app(app_deauther_id);
+            // app_manager->go_to_app(app_deauther_id);
 
             break;
 
         case 3:
             Serial.println("Credits");
-            app_manager->go_to_app(app_credits_id);
+            // app_manager->go_to_app(app_credits_id);
 
             break;
     }

@@ -282,6 +282,9 @@ void Menus_t::onButtonReleased(Button2& btn)
 void Menus_t::menuButtonCallback(uint8_t button, uint8_t event){
     
     if (button == BUTTON_LEFT) {
+
+        Serial.println("Left");
+
         if(this->callback_back != NULL) {
             this->callback_back(this->context);
         }

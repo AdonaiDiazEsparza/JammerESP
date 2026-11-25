@@ -8,8 +8,12 @@
 #include <Adafruit_SSD1306.h>
 #include <Button2.h>
 
-#define SDA_PIN 5
-#define SCL_PIN 4
+// #define SDA_PIN 5
+// #define SCL_PIN 4
+
+#define SDA_PIN 4
+#define SCL_PIN 5
+
 
 #define SCREEN_ADDRESS 0x3C
 
@@ -21,7 +25,7 @@
 #define PIN_BTN_UP    32
 #define PIN_BTN_DOWN  25
 #define PIN_BTN_LEFT  33
-#define PIN_BTN_RIGHT 2
+#define PIN_BTN_RIGHT 15
 
 extern Adafruit_SSD1306 display;
 extern Button2 btn_up;
